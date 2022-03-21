@@ -1,0 +1,98 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@300;400;700&display=swap');
+
+
+:root{
+    --larger-text: clamp(2rem,5vw,2.2rem);
+    --large-text: clamp(1.8rem,5vw,2vw);
+    --medium-text: clamp(1.6rem,5vw,1.8rem);
+
+    --small-text: clamp(1rem,5vw,1.1rem);
+    --smaller-text: clamp(0.9rem,5vw,1rem);
+}
+
+
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto",sans-serif, "Font Awesome 5 Free", "Font Awesome 5 Brands";
+}
+
+body,
+html{
+    height: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    line-height: 1.1;
+    max-width: 75ch;
+    font-family: "Poppins",sans-serif;      
+}
+
+h1{
+    font-size: var(--larger-text);
+}
+
+h2{
+    font-size: var(--large-text);
+}
+
+h3{
+    font-size: var(--medium-text);
+}
+
+p{
+    font-size: var(--smaller-text);
+    font-weight: lighter;
+}
+
+label,
+input,
+a,
+button{
+    font-size: var(--small-text);
+}
+
+button,
+a,
+input{
+    padding: 0.6rem 0.9rem;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+    text-transform: uppercase;
+}
+
+button{
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
+}
+
+input{
+    border: none;
+}
+
+img{
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
