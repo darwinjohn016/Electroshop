@@ -3,7 +3,7 @@
     --secondary-color: #595860;
     --accent-color: #009063;
 
-    --grayish-color: #dcdcdc;
+    --error-color: #fa7777;
 }
 
 body{
@@ -89,12 +89,35 @@ h3{
     width: 100%;
 }
 
+.signup-form-bx-2{
+    position: relative;
+}
+
+.signup-form-input-error-2{
+    position: absolute;
+    top: 0;
+    right: 5rem;
+    display: inline-block;
+    color: var(--error-color);
+    font-size: 1rem;
+}
+
 .signup-form-title{
     margin-bottom: 1rem;
 }
 
 .signup-form-input-bx {
     margin-bottom: .7rem;
+    position: relative;
+}
+
+.signup-form-input-error{
+    position: absolute;
+    top: .2rem;
+    right: 5rem;
+    display: inline-block;
+    color: var(--error-color);
+    font-size: 0.8rem;
 }
 
 .signup-form-input-bx input{

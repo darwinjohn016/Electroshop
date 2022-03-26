@@ -1,3 +1,7 @@
+if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+}
+
 
 const prevBtn = document.querySelector('.prev-btn');
 const nextBtn = document.querySelector('.next-btn');
@@ -8,13 +12,6 @@ const formWrapper = document.querySelector('.signup-form-wrapper');
 
 
 const timelineBx = document.querySelector('.signup-timeline-bx');
-
-
-const signupForm = document.querySelector('.signup-form');
-
-signupForm.addEventListener('submit', (e)=>{
-    e.preventDefault();
-})
 
 
 class NavigateInput{
@@ -110,3 +107,6 @@ prevBtn.addEventListener('click',navigateInput.prev.bind(navigateInput));
 nextBtn.addEventListener('click',navigateInput.next.bind(navigateInput));
 
 window.addEventListener('resize',navigateInput.update.bind(navigateInput))
+
+
+
