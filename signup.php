@@ -1,50 +1,52 @@
 <?php
-        $users_fname = '';
-        $users_lname = '';
-        $users_email = '';
-        $users_cpnumber = '';
-        $users_address = '';
-        $users_city = '';
-        $users_country = '';
-        $users_region = '';
-        $users_username = '';
-        $users_password = '';
-        $users_cpassword = '';
+
+session_start();
+
+$users_fname = '';
+$users_lname = '';
+$users_email = '';
+$users_cpnumber = '';
+$users_address = '';
+$users_city = '';
+$users_country = '';
+$users_region = '';
+$users_username = '';
+$users_password = '';
+$users_cpassword = '';
 
 
-    // Submit the data using post and click of the submit button
+// Submit the data using post and click of the submit button
 
-    if(isset($_POST['submit'])){
+if(isset($_POST['submit'])){
 
-        $users_fname = $_POST['users_fname'];  
-        $users_lname = $_POST['users_lname'];  
-        $users_email = $_POST['users_email'];  
-        $users_cpnumber = $_POST['users_cpnumber'];  
-        $users_address = $_POST['users_address'];  
-        $users_city = $_POST['users_city'];  
-        $users_country = $_POST['users_country'];  
-        $users_region = $_POST['users_region'];  
-        $users_username = $_POST['users_username'];  
-        $users_password = $_POST['users_password'];
-        $users_cpassword = $_POST['users_cpassword'];
-        
-        require_once "./classes/database.classes.php";
-        require_once "./classes/signup-model.classes.php";
-        require_once "./classes/signup-control.classes.php";
+    $users_fname = $_POST['users_fname'];  
+    $users_lname = $_POST['users_lname'];  
+    $users_email = $_POST['users_email'];  
+    $users_cpnumber = $_POST['users_cpnumber'];  
+    $users_address = $_POST['users_address'];  
+    $users_city = $_POST['users_city'];  
+    $users_country = $_POST['users_country'];  
+    $users_region = $_POST['users_region'];  
+    $users_username = $_POST['users_username'];  
+    $users_password = $_POST['users_password'];
+    $users_cpassword = $_POST['users_cpassword'];
+    
+    require_once "./classes/database.classes.php";
+    require_once "./classes/signup-model.classes.php";
+    require_once "./classes/signup-control.classes.php";
 
-        // Instantiate the controller class
+    // Instantiate the controller class
 
-        $signUpControl = new SignUpControl($users_fname,$users_lname,$users_email,$users_cpnumber,$users_address,$users_city,$users_country,$users_region,$users_username,$users_password,$users_cpassword);
+    $signUpControl = new SignUpControl($users_fname,$users_lname,$users_email,$users_cpnumber,$users_address,$users_city,$users_country,$users_region,$users_username,$users_password,$users_cpassword);
 
-        // If Info Inserted To Database Clear the Form Fields
-        
-        $signUpControl -> signUpUser();
- 
+    // If Info Inserted To Database Clear the Form Fields
+    
+    $signUpControl -> signUpUser();
 
-
-        
-    }
+}
 ?>
+
+
 
 
 

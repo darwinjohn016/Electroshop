@@ -129,15 +129,25 @@ class SignUpControl extends SignUpModel{
             //     window.location.href="";
             // }
             // else{
-                $this->userData();
-                header("Location:./signup.php");
-                exit();            
+            $this->userData();
+            
+            echo '<script>
+            alert("Data Successfully Sent!");
+            window.location.href="./signup.php";
+            </script>';
+            
+            exit();
             // }
             // </script>';
 
         }
-        
 
+        else {
+            echo '<script>
+            alert("Error Signup Failed!");
+            </script>';
+        }
+        
         return $result;
     }
 
