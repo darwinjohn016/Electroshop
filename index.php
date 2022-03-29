@@ -1,11 +1,16 @@
+<?php
+    session_start();
 
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <title>Electroshop</title>
 
 
@@ -21,27 +26,48 @@
 
         <header class="hero-header">
 
-            <h2 class="hero-logo"> <span>E</span>lectro<span>S</span>hop</h2>
+            <div class="hero-header-wrapper">
+                <h2 class="hero-logo"> <span>E</span>lectro<span>S</span>hop</h2>
+                
+                <button class="hamburger-btn"><i class="fa fa-bars"></i></button>
+
+                <nav class="hero-nav">
+                    <button class="close-btn"><i class="fa fa-close"></i></button>
+
+                    <div class="nav-btn-bx">
+                        <a href="#">Home</a>
+                        <a href="#">Services</a>
+                        <a href="#">Products</a>
+                        <a href="#">Support</a>
+                    </div>
+
+                    <?php 
+
+                    if(isset($_SESSION['user'])){
+                        echo '
+                        <div class="user-btn-bx">
+                            <a href="includes/logout.inc.php">Logout</a>
+                            <button>Picture</button>
+                        </div>
+                        ';
+                    }
+                    else {
+                        echo '
+                        <div class="user-btn-bx">
+                            <a href="signup.php">Sign-up</a>
+                            <a href="login.php" class="user-login-btn">Login</a>
+                        </div>';
+                    }
+
+                    ?>
+
+
+
+
+                </nav>
+            </div>
+
             
-            <button class="hamburger-btn"><i class="fa fa-bars"></i></button>
-
-            <nav class="hero-nav">
-
-                <button class="close-btn"><i class="fa fa-close"></i></button>
-
-                <div class="nav-btn-bx">
-                    <a href="">Home</a>
-                    <a href="">Services</a>
-                    <a href="">Products</a>
-                    <a href="">Support</a>
-                </div>
-
-                <div class="user-btn-bx">
-                    <a href="signup.php">Sign-up</a>
-                    <a href="login.php">Login</a>
-                </div>
-
-            </nav>
 
         </header>
 

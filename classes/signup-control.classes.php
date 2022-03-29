@@ -30,7 +30,7 @@ class SignUpControl extends SignUpModel{
         $this->users_cpassword = $users_cpassword;
     }
 
-    // Insert Into Database
+    // If No Error Occurs Insert Into Database
 
     public function signUpUser(){
 
@@ -393,7 +393,7 @@ class SignUpControl extends SignUpModel{
             echo 'Username is Required';
         } 
         else if($this->validUsername() == false){
-            echo 'Username is Invalid';
+            echo 'Numbers or Alphabets Only';
         }          
     }
 
@@ -413,11 +413,11 @@ class SignUpControl extends SignUpModel{
     private function validUsername(){
         
         $result = '';
-        if(!preg_match('/^[a-zA-z0-9]/',$this->users_username)){
-            $result = false;
+        if(preg_match('/^[a-zA-z0-9]/',$this->users_username)){
+            $result = true;
         }
         else {
-            $result = true;
+            $result = false;
         }
 
         return $result;
