@@ -19,14 +19,14 @@
     font-family: "Roboto",sans-serif, "Font Awesome 5 Free", "Font Awesome 5 Brands";
 }
 
-body,
-html{
+html,
+body{
     height: 100%;
-    overflow-x: hidden;
     scroll-behavior: smooth;
     line-height: 1.6;
     position: relative;
 }
+
 
 h1,
 h2,

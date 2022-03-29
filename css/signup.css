@@ -42,6 +42,17 @@ h3{
     margin-bottom: 1.5rem;
 }
 
+.hero-redirect-btn{
+    text-transform: capitalize;
+    font-size: inherit;
+    padding-left: 0;
+    font-family: inherit;
+}
+
+.hero-redirect-btn span{
+    color: var(--accent-color);
+}
+
 .signup-timeline-bx{
     display: flex;
     flex-direction: row;
@@ -130,7 +141,26 @@ h3{
                 inset 2px 2px 4px rgba(255,255,255,0.1),
                 inset 2px 2px 8px rgba(0,0,0,0.15);
     outline-color: var(--accent-color);
+    position: relative;
 }
+
+.signup-reveal-password-btn,
+.signup-not-reveal-password-btn{
+    position: absolute;
+    top: 45%;
+    right: 20%;
+    background-color: transparent;
+}
+
+.signup-reveal-password-btn i,
+.signup-not-reveal-password-btn i{
+    color: var(--secondary-color);
+}
+
+.toggle-reveal-password-btn{
+    display: none;
+}
+
 
 .signup-redirect-btn-bx{
     margin: .5rem 0;
@@ -174,6 +204,11 @@ h3{
     .signup-form-input-bx input{
         width: 84%;
     }
+
+    .signup-reveal-password-btn,
+    .signup-not-reveal-password-btn{
+        right: 15%;
+    }    
 }
 
 

@@ -3,7 +3,7 @@
     --secondary-color: #595860;
     --accent-color: #009063;
 
-    --grayish-color: #dcdcdc;
+    --error-color: #fa7777;
 }
 
 body{
@@ -42,6 +42,17 @@ h3{
     justify-content: space-around;
 }
 
+.hero-redirect-btn{
+    text-transform: capitalize;
+    font-size: inherit;
+    padding-left: 0;
+    font-family: inherit;
+}
+
+.hero-redirect-btn span{
+    color: var(--accent-color);
+}
+
 .login-form{
     width: 100%;
 }
@@ -77,6 +88,15 @@ h3{
     color: rgb(89, 88, 96,0.5);
 }
 
+.login-form-input-error{
+    position: absolute;
+    top: .2rem;
+    right: 0;
+    display: inline-block;
+    color: var(--error-color);
+    font-size: 0.8rem;
+}
+
 .login-form-input-bx input{
     margin-top: .3rem;
     width: 100%;
@@ -86,7 +106,27 @@ h3{
                 -2px -2px 12px rgba(255,255,255,0.5),
                 inset 2px 2px 4px rgba(255,255,255,0.1),
                 inset 2px 2px 8px rgba(0,0,0,0.15);
+    position: relative;
 }
+
+.login-reveal-password-btn,
+.login-not-reveal-password-btn{
+    position: absolute;
+    top: 45%;
+    right: 0;
+    background-color: transparent;
+}
+
+.login-reveal-password-btn i,
+.login-not-reveal-password-btn i{
+    color: var(--secondary-color);
+}
+
+.toggle-reveal-password-btn{
+    display: none;
+}
+
+
 
 .login-form-redirect-btn-bx{
     display: flex;

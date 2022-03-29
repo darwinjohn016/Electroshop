@@ -67,7 +67,7 @@ if(isset($_POST['submit'])){
     <div class="signup-container">
 
         <div class="signup-header">
-            <h2 class="signup-title">Signup Form</h2>
+            <h2 class="signup-title"><a href="index.php" class="hero-redirect-btn"><span>E</span>lectro<span>S</span>hop</a>- Signup</h2>
 
             <div class="signup-timeline-bx">
                 <div class="circle-bx">
@@ -246,11 +246,15 @@ if(isset($_POST['submit'])){
                             }
                             ?>
                         <input type="password" name="users_password" id="">
+                        <button type="button" class="signup-reveal-password-btn"><i class="fa fa-eye"></i></button>
+                        <button type="button" class="signup-not-reveal-password-btn toggle-reveal-password-btn"><i class="fa fa-eye-slash"></i></button>
                     </div>  
 
                     <div class="signup-form-input-bx">
                         <label for="">Confirm Password</label>
                         <input type="password" name="users_cpassword" id="">
+                        <button type="button" class="signup-reveal-password-btn"><i class="fa fa-eye"></i></button>
+                        <button type="button" class="signup-not-reveal-password-btn toggle-reveal-password-btn"><i class="fa fa-eye-slash"></i></button>
                     </div>  
 
                 </div> 
