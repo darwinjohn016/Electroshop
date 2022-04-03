@@ -4,13 +4,17 @@ class SignUpModel extends Database{
 
     protected function insertUser($users_fname,$users_lname,$users_email,$users_cpnumber,$users_address,$users_city,$users_country,$users_region,$users_username,$users_password){
 
-        $stmt = $this->connect()->prepare("INSERT INTO users (users_fname,users_lname,users_email,users_cpnumber,users_address,users_city,users_country,users_region,users_username,users_password,users_regtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $this->connect()->prepare("INSERT INTO users (users_fname,users_lname,users_email,users_cpnumber,users_address,users_city,users_country,users_region,users_username,users_password,users_picture,users_regtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         $hashed_password = password_hash($users_password, PASSWORD_DEFAULT);
 
         $registration_time = date('Y-m-d H:i:s');
 
-        if(!$stmt->execute([$users_fname,$users_lname,$users_email,$users_cpnumber,$users_address,$users_city,$users_country,$users_region,$users_username,$hashed_password,$registration_time])){
+        $image_dir = 'user-images';
+        $image_file = $image_dir . '/guest.jpg';
+
+
+        if(!$stmt->execute([$users_fname,$users_lname,$users_email,$users_cpnumber,$users_address,$users_city,$users_country,$users_region,$users_username,$hashed_password,$image_file,$registration_time])){
             $stmt = null;
             header("Location:./signup.php?error=stmtfailed");
             exit();

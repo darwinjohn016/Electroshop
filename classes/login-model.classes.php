@@ -31,7 +31,21 @@ class LoginModel extends Database{
 
                 $fetch= $stmt->fetchAll();
 
+                session_regenerate_id(true);
+
+                $_SESSION['id'] = $fetch[0]['id'];
                 $_SESSION['user'] = $fetch[0]['users_username'];
+
+                $_SESSION['fname'] = $fetch[0]['users_fname'];
+                $_SESSION['lname'] = $fetch[0]['users_lname'];
+
+                $_SESSION['email'] = $fetch[0]['users_email'];
+                $_SESSION['img'] = $fetch[0]['users_picture'];
+                
+
+
+
+
 
                 echo '<script>
                 window.location.href="./index.php";

@@ -42,6 +42,10 @@ h3{
     justify-content: space-around;
 }
 
+.login-title{
+    margin-bottom: 1.5rem;
+}
+
 .hero-redirect-btn{
     text-transform: capitalize;
     font-size: inherit;
@@ -112,7 +116,7 @@ h3{
 .login-reveal-password-btn,
 .login-not-reveal-password-btn{
     position: absolute;
-    top: 45%;
+    top: 47%;
     right: 0;
     background-color: transparent;
 }
@@ -158,6 +162,10 @@ h3{
 @media(min-width:500px){
     .login-container{
         grid-template-columns: 5% 450px 5%;
+    }
+    
+    .login-title{
+        margin-bottom: 0;
     }
 }
 

@@ -2,10 +2,14 @@
     --dominant-color: #EBEBEB;
     --secondary-color: #595860;
     --accent-color: #009063;
+
+
+    --greenish-color: #009063;
 }
 
 body{
     background-color: var(--dominant-color);
+    position: relative;
 }
 
 p,
@@ -26,7 +30,7 @@ h3{
     '. . .'
     '. section .'
     '. footer .';
-    grid-template-rows: 12vh 78vh 15vh;
+    grid-template-rows: 12vh 78vh 20vh;
 }
 
 .hero-header{
@@ -71,13 +75,13 @@ h3{
     height: 100vh;
     padding: 2rem 1rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
     text-align: center;
     background-color: var(--dominant-color);
     transform: translateX(100%);
-    transition: transform 0.3s ease-in;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .close-btn{
@@ -95,24 +99,103 @@ h3{
 
 .nav-btn-style{
     font-weight: bold;
-    text-decoration: underline;
+    font-size: 1.2rem;
     transition: all .2s ease-in;
 }
 
 .user-btn-bx{
-    margin-top: 3rem;
+    margin-bottom: 2rem;
     position: relative;
 }
 
 .user-btn-bx::before{
     content: '';
     position: absolute;
-    top: -1rem;
+    bottom: -1rem;
     left: 0;
     width: 100%;
     height: 2px;
     background-color: var(--secondary-color);
     opacity: 0.2;
+}
+
+.user-btn-bx-2{
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    position: relative;
+    gap: 2rem;
+}
+
+.user-btn-bx-2::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--secondary-color);
+    opacity: 0.2;
+}
+
+.user-info-bx{
+    text-align: left;
+}
+
+.user-info-bx-2{
+    display: none;
+    text-align: left;
+}
+
+.user-full-name{
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: .5rem;
+}
+
+.user-email{
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.user-btn{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    margin-left: 1rem;
+}
+
+.user-btn img{
+    border-radius: inherit;
+    top: 0;
+    left: 0;
+}
+
+
+.user-btn-bx-3{
+    margin: 2rem 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+
+.user-btn-bx-3::before{
+    content: '';
+    position: absolute;
+    bottom: -1.5rem;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--secondary-color);
+    opacity: 0.2;
+}
+
+.user-btn-bx-3 div i{
+    display: none;
 }
 
 .hero-section-bx{
@@ -185,10 +268,11 @@ h3{
     .nav-btn-bx,
     .user-btn-bx{
         flex-direction: row;
+        align-items: center;
     }
 
     .user-btn-bx{
-        margin-top: 0;
+        margin-bottom: 0;
         margin-left: 2rem;
     }
 
@@ -199,6 +283,76 @@ h3{
     .user-login-btn{
         background-color: var(--accent-color);
         color: var(--dominant-color);
+    }
+
+    .user-btn-bx-2{
+        background-color: transparent;
+        padding: 0;
+        margin-top: 0;
+    }
+    
+    .user-btn-bx-2 a{
+        color: var(--secondary-color);
+    }
+
+    .user-btn-bx-2::before{
+        content: none;
+    }
+
+    .user-info-bx{
+        display: none;
+    }
+
+    .user-btn-bx-3{
+        position: absolute;
+        right: 0;
+        top: 2rem;
+        background-color: var(--dominant-color);
+        padding: 2rem 1rem;
+        align-items: flex-start;
+        gap: 1.5rem;
+        box-shadow: 1px 1px 15px rgba(255,255,255,0.125),
+        -1px -1px 15px rgba(0,0,0,0.1);
+    }
+
+    .user-btn-bx-3::before{
+        content: none;
+    }
+
+    .user-btn-bx-3 div i{
+        display: block;
+    }
+
+    .user-info-bx-2{
+        display: block;
+        margin-bottom: 1rem;
+        position: relative;
+    }
+
+    .user-info-bx-2::before{
+        content: '';
+        position: absolute;
+        bottom: -1rem;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--secondary-color);
+        opacity: 0.2;
+    }
+
+    .user-anchor-bx{
+        width: 100%;
+    }
+
+    .user-anchor-bx a{
+        display: flex;
+        align-items: center;
+        padding-left:0;
+        gap: 1rem;
+    }
+
+    .hide-user-btn-bx-3{
+        display: none;
     }
     
     .hero-section-container{
@@ -267,6 +421,11 @@ h3{
     .cta-btn-2{
         text-transform: capitalize;
         padding: 0.6rem 0.9rem 0.6rem 0;
+        color: var(--accent-color);
+    }
+
+    .cta-btn-2 i{
+        margin-left: .2rem;
     }
 
     .hero-img-bx-2{

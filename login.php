@@ -1,6 +1,7 @@
 <?php
+    session_name('user');
+    session_start();
 
-session_start();
 
 
 // Submit the data using post and click of the submit button

@@ -21,6 +21,7 @@
 
 html,
 body{
+    min-height: 100vh;
     height: 100%;
     scroll-behavior: smooth;
     line-height: 1.6;

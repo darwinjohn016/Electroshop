@@ -1,8 +1,8 @@
 <?php
+    session_name('user');
     session_start();
 
-
-
+    
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +35,7 @@
                     <button class="close-btn"><i class="fa fa-close"></i></button>
 
                     <div class="nav-btn-bx">
-                        <a href="#">Home</a>
+                        <a href="#" class="nav-btn-style">Home</a>
                         <a href="#">Services</a>
                         <a href="#">Products</a>
                         <a href="#">Support</a>
@@ -43,12 +43,36 @@
 
                     <?php 
 
-                    if(isset($_SESSION['user'])){
+                    if((isset($_SESSION['user']) && !empty($_SESSION['user'])) && (isset($_SESSION['id']) && !empty($_SESSION['id']))){
                         echo '
-                        <div class="user-btn-bx">
-                            <a href="includes/logout.inc.php">Logout</a>
-                            <button>Picture</button>
+                        
+                        <div class="user-btn-bx-3 hide-user-btn-bx-3">
+                            <div class="user-info-bx-2">
+                                <p class="user-full-name">'.$_SESSION['fname'].' '.$_SESSION['lname'].'</p>
+                                <p class="user-email">'.$_SESSION['email'].'</p>
+                            </div>
+                            <div class="user-anchor-bx">
+                                <a href=""><i class="fa-solid fa-user"></i>Profile</a>
+                            </div>
+                            <div class="user-anchor-bx">
+                                <a href=""><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
+                            </div>
+                            <div class="user-anchor-bx">
+                                <a href="includes/logout.inc.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
+                            </div>
+                        </div>  
+
+                        <div class="user-btn-bx-2">
+                            <button class="user-btn"><img src="'.$_SESSION["img"].'"></img>
+                            </button>
+                            <div class="user-info-bx">
+                                <p class="user-full-name">'.$_SESSION['fname'].' '.$_SESSION['lname'].'</p>
+                                <p class="user-email">'.$_SESSION['email'].'</p>
+                            </div>
+
                         </div>
+
+                     
                         ';
                     }
                     else {
@@ -75,7 +99,7 @@
             
 
             <h1 class="hero-headline">Affordable and Robust Electronic Components For Your Next Project</h1>
-            <p class="hero-subheadline">Arduino,Adafruit,Raspberry Pi and More</p>
+            <p class="hero-subheadline">You can visit our shop or buy online with minimal delivery fee</p>
 
             <a href="" class="cta-btn">Shop Now</a>
 
@@ -96,9 +120,9 @@
         </div>
 
         <div class="hero-section-bx-2">
-            <h2 class="hero-headline-2">Arduino Uno,Adafruit,Raspberry Pi and more</h2>
+            <h2 class="hero-headline-2">Arduino, Adafruit, Raspberry Pi and More</h2>
 
-            <a href="" class="cta-btn-2">View More</a>
+            <a href="" class="cta-btn-2">View More <i class="fa fa-arrow-right"></i></a>
         </div>
 
         <div class="hero-img-bx-2">
