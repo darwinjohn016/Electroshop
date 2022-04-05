@@ -2,16 +2,19 @@
     session_name('user');
     session_start();
 
-
+    $users_username = "";
+    $users_email = "";
 
 // Submit the data using post and click of the submit button
 
 if(isset($_POST['submit'])){
 
  
-    $users_username = $_POST['users_username'];  
-    $users_email = $_POST['users_email'];    
-    $users_password = $_POST['users_password'];
+    $users_username = filter_input(INPUT_POST,'users_username',FILTER_SANITIZE_SPECIAL_CHARS); 
+    
+    $users_email = filter_input(INPUT_POST,'users_email',FILTER_SANITIZE_SPECIAL_CHARS);
+
+    $users_password = filter_input(INPUT_POST,'users_password',FILTER_SANITIZE_SPECIAL_CHARS);
     
     require_once "./classes/database.classes.php";
     require_once "./classes/login-model.classes.php";
@@ -51,8 +54,8 @@ if(isset($_POST['submit'])){
             <div class="login-header">
                 <h2 class="login-title"><a href="index.php" class="hero-redirect-btn"><span>E</span>lectro<span>S</span>hop</a>- Login</h2>
             </div>
-
-            <form action="login.php" method="post" class="login-form">
+            
+            <form action="<?php echo filter_input(INPUT_SERVER,'PHP_SELF',FILTER_SANITIZE_SPECIAL_CHARS);?>" method="post" class="login-form">
 
                 <div class="login-form-input-bx">
                     <label for="">Username</label>
@@ -65,7 +68,7 @@ if(isset($_POST['submit'])){
                         <?php
                         }
                         ?>
-                    <input type="text" name="users_username"  id="">
+                    <input type="text" placeholder="Username" name="users_username" value="<?php echo $users_username ?>"  id="">
                 </div>
 
                 
@@ -80,7 +83,7 @@ if(isset($_POST['submit'])){
                         <?php
                         }
                         ?>                   
-                    <input type="text" name="users_email" id="">
+                    <input type="text" placeholder="Email" name="users_email" value="<?php echo $users_email ?>"  id="">
                 </div>
 
                 
@@ -95,7 +98,7 @@ if(isset($_POST['submit'])){
                         <?php
                         }
                         ?>
-                        <input type="password" name="users_password" id="">
+                        <input type="password" placeholder="Password" name="users_password" id="">
                         <button type="button" class="login-reveal-password-btn"><i class="fa fa-eye"></i></button>
                         <button type="button" class="login-not-reveal-password-btn toggle-reveal-password-btn"><i class="fa fa-eye-slash"></i></button>
 

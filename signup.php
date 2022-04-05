@@ -19,17 +19,28 @@
 
     if(isset($_POST['submit'])){
 
-        $users_fname = $_POST['users_fname'];  
-        $users_lname = $_POST['users_lname'];  
-        $users_email = $_POST['users_email'];  
-        $users_cpnumber = $_POST['users_cpnumber'];  
-        $users_address = $_POST['users_address'];  
-        $users_city = $_POST['users_city'];  
-        $users_country = $_POST['users_country'];  
-        $users_region = $_POST['users_region'];  
-        $users_username = $_POST['users_username'];  
-        $users_password = $_POST['users_password'];
-        $users_cpassword = $_POST['users_cpassword'];
+        $users_fname = filter_input(INPUT_POST,'users_fname',FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $users_lname = filter_input(INPUT_POST,'users_lname',FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $users_email = filter_input(INPUT_POST,'users_email',FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $users_cpnumber = filter_input(INPUT_POST,'users_cpnumber');
+
+        $users_address = filter_input(INPUT_POST,'users_address',FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $users_city = filter_input(INPUT_POST,'users_city',FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $users_country = filter_input(INPUT_POST,'users_country',FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $users_region = filter_input(INPUT_POST,'users_region',FILTER_SANITIZE_SPECIAL_CHARS);
+  
+        $users_username = filter_input(INPUT_POST,'users_username',FILTER_SANITIZE_SPECIAL_CHARS);
+  
+        $users_password = filter_input(INPUT_POST,'users_password',FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $users_cpassword = filter_input(INPUT_POST,'users_cpassword',FILTER_SANITIZE_SPECIAL_CHARS);
+  
         
         require_once "./classes/database.classes.php";
         require_once "./classes/signup-model.classes.php";
@@ -42,7 +53,6 @@
         // If Info Inserted To Database Clear the Form Fields
         
         $signUpControl -> signUpUser();
-
     }
 ?>
 
@@ -85,7 +95,7 @@
             </div>
         </div>
 
-        <form action="signup.php" method="post" class="signup-form">
+        <form action="<?php echo filter_input(INPUT_SERVER,'PHP_SELF',FILTER_SANITIZE_SPECIAL_CHARS);?>" method="post" class="signup-form">
 
             <div class="signup-form-wrapper">
 
@@ -104,7 +114,7 @@
                             <?php
                             }
                             ?>
-                        <input type="text" name="users_fname" value="<?php echo htmlspecialchars($users_fname) ?>" id="">
+                        <input type="text" placeholder="First Name" name="users_fname" value="<?php echo ($users_fname) ?>" id="">
                     </div>
 
                     <div class="signup-form-input-bx">
@@ -118,7 +128,7 @@
                             <?php
                             }
                             ?>
-                        <input type="text" name="users_lname" value="<?php echo htmlspecialchars($users_lname) ?>" id="">
+                        <input type="text" placeholder="Last Name" name="users_lname" value="<?php echo ($users_lname) ?>" id="">
                     </div>  
 
                     <div class="signup-form-input-bx">
@@ -133,11 +143,11 @@
                             <?php
                             }
                             ?>
-                        <input type="text" name="users_email" value="<?php echo htmlspecialchars($users_email)?>"  id="">
+                        <input type="text" placeholder="Email" name="users_email" value="<?php echo ($users_email)?>"  id="">
                     </div>  
 
                     <div class="signup-form-input-bx">
-                        <label for="">Cellphone No.</label>
+                        <label for="">Cellphone Number</label>
                             <?php 
                             if(isset($_POST['submit'])){
                             ?>
@@ -147,7 +157,7 @@
                             <?php
                             }
                             ?>
-                        <input type="number" name="users_cpnumber" value="<?php echo htmlspecialchars($users_cpnumber)?>" id="">
+                        <input type="number" placeholder="Cellphone Number" name="users_cpnumber" value="<?php echo ($users_cpnumber)?>" id="">
                     </div>  
 
                 </div>
@@ -167,7 +177,7 @@
                             <?php
                             }
                             ?>
-                        <input type="text" name="users_address" value="<?php echo htmlspecialchars($users_address)?>" id="">
+                        <input type="text" placeholder="Address" name="users_address" value="<?php echo ($users_address)?>" id="">
                     </div>
 
                     <div class="signup-form-input-bx">
@@ -181,7 +191,7 @@
                             <?php
                             }
                             ?>
-                        <input type="text" name="users_city" value="<?php echo htmlspecialchars($users_city)?>" id="">
+                        <input type="text" placeholder="City" name="users_city" value="<?php echo ($users_city)?>" id="">
                     </div>
 
                     <div class="signup-form-input-bx">
@@ -195,7 +205,7 @@
                             <?php
                             }
                             ?>
-                        <input type="text" name="users_country" value="<?php echo htmlspecialchars($users_country)?>" id="">
+                        <input type="text" placeholder="Country" name="users_country" value="<?php echo ($users_country)?>" id="">
                     </div>  
 
                     <div class="signup-form-input-bx">
@@ -209,7 +219,7 @@
                             <?php
                             }
                             ?>
-                        <input type="text" name="users_region" value="<?php echo htmlspecialchars($users_region)?>" id="">
+                        <input type="text" placeholder="Region" name="users_region" value="<?php echo ($users_region)?>" id="">
                     </div>  
 
                 </div> 
@@ -231,7 +241,7 @@
                             <?php
                             }
                             ?>
-                        <input type="text" name="users_username" value="<?php echo htmlspecialchars($users_username)?>" id="">
+                        <input type="text" placeholder="Username" name="users_username" value="<?php echo ($users_username)?>" id="">
                     </div>
 
                     <div class="signup-form-input-bx">
@@ -245,16 +255,16 @@
                             <?php
                             }
                             ?>
-                        <input type="password" name="users_password" id="">
-                        <button type="button" class="signup-reveal-password-btn"><i class="fa fa-eye"></i></button>
-                        <button type="button" class="signup-not-reveal-password-btn toggle-reveal-password-btn"><i class="fa fa-eye-slash"></i></button>
+                        <input type="password" placeholder="Password" name="users_password" id="">
+                        <button type="button" class="signup-reveal-password-btn"><i class="fa fa-eye-slash"></i></button>
+                        <button type="button" class="signup-not-reveal-password-btn toggle-reveal-password-btn"><i class="fa fa-eye"></i></button>
                     </div>  
 
                     <div class="signup-form-input-bx">
                         <label for="">Confirm Password</label>
-                        <input type="password" name="users_cpassword" id="">
-                        <button type="button" class="signup-reveal-password-btn"><i class="fa fa-eye"></i></button>
-                        <button type="button" class="signup-not-reveal-password-btn toggle-reveal-password-btn"><i class="fa fa-eye-slash"></i></button>
+                        <input type="password" placeholder="Confirm Password" name="users_cpassword" id="">
+                        <button type="button" class="signup-reveal-password-btn"><i class="fa fa-eye-slash"></i></button>
+                        <button type="button" class="signup-not-reveal-password-btn toggle-reveal-password-btn"><i class="fa fa-eye"></i></button>
                     </div>  
 
                 </div> 
@@ -283,7 +293,7 @@
     </div>
 
 
-
+                            
     <script src="js/signup.js"></script>
 </body>
 </html>

@@ -143,14 +143,14 @@ const userBtn = document.querySelector('.user-btn');
 const userBtnBx3 = document.querySelector('.user-btn-bx-3');
 
 function toggleInfoBx(){
-    userBtnBx3.classList.toggle('hide-user-btn-bx-3');
 
+    userBtnBx3.classList.toggle('hide-user-btn-bx-3');
     if(document.querySelectorAll('.hide-user-btn-bx-3').length === 0){
         document.body.style.position = "fixed";
-
     }
     else {
         document.body.style.position = "relative";
+    
     }
 }
 

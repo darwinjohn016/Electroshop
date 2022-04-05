@@ -8,6 +8,7 @@ class SignUpModel extends Database{
 
         $hashed_password = password_hash($users_password, PASSWORD_DEFAULT);
 
+        date_default_timezone_set("Asia/Singapore");
         $registration_time = date('Y-m-d H:i:s');
 
         $image_dir = 'user-images';

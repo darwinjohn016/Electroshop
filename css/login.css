@@ -18,7 +18,8 @@ label,
 a,
 h1,
 h2,
-h3{
+h3,
+input{
     color: var(--secondary-color);
 }
 
@@ -33,10 +34,8 @@ h3{
 
 .login-bx{
     grid-area: login;
-    padding: 2rem;
+    padding: 2rem 1rem;
     background-color:var(--dominant-color);
-    box-shadow: 1px 1px 10px rgba(0,0,0,0.1),
-    -1px -1px 10px rgba(255,255,255,0.0125);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -62,12 +61,33 @@ h3{
 }
 
 .login-form-input-bx {
-    margin-bottom: .7rem;
     position: relative;
 }
 
+.login-form-input-bx label{
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-40%);
+    opacity: 0;
+    transition: all .2s ease-in;
+}
+
+
+.login-form-input-bx .login-float-label{
+    transform: translateY(-150%);
+    opacity: 1;
+    background-color: var(--dominant-color);
+    font-size: .8rem;
+    z-index: 2;
+}
+
 .login-form-input-bx:nth-child(1){
-    margin-bottom: 2.5rem;
+    margin-bottom: 3.5rem;
+}
+
+.login-form-input-bx:nth-child(3){
+    margin: 2rem 0 1rem 0;
 }
 
 .login-form-input-bx:nth-child(1)::before{
@@ -94,11 +114,12 @@ h3{
 
 .login-form-input-error{
     position: absolute;
-    top: .2rem;
+    top: -1.2rem;
     right: 0;
     display: inline-block;
     color: var(--error-color);
     font-size: 0.8rem;
+    z-index: 3;
 }
 
 .login-form-input-bx input{
@@ -116,9 +137,10 @@ h3{
 .login-reveal-password-btn,
 .login-not-reveal-password-btn{
     position: absolute;
-    top: 47%;
+    top: 10%;
     right: 0;
     background-color: transparent;
+    opacity: .7;
 }
 
 .login-reveal-password-btn i,
@@ -162,6 +184,12 @@ h3{
 @media(min-width:500px){
     .login-container{
         grid-template-columns: 5% 450px 5%;
+    }
+
+    .login-bx{
+        padding: 2rem;
+        box-shadow: 1px 1px 10px rgba(0,0,0,0.1),
+        -1px -1px 10px rgba(255,255,255,0.0125);
     }
     
     .login-title{

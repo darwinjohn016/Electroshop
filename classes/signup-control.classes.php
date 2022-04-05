@@ -143,8 +143,9 @@ class SignUpControl extends SignUpModel{
         }
 
         else {
+
             echo '<script>
-            alert("Error Signup Failed!");
+                alert("Error Signup Failed!");
             </script>';
         }
         

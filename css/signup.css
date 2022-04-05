@@ -18,7 +18,8 @@ label,
 a,
 h1,
 h2,
-h3{
+h3,
+input{
     color: var(--secondary-color);
 }
 
@@ -26,10 +27,8 @@ h3{
 .signup-container{
     width: 300px;
     margin: auto;
-    padding: 2rem;
     background-color:var(--dominant-color);
-    box-shadow: 1px 1px 10px rgba(0,0,0,0.1),
-    -1px -1px 10px rgba(255,255,255,0.0125);
+    padding: 2rem 1rem;
 }
 
 .signup-header{
@@ -56,9 +55,10 @@ h3{
 .signup-timeline-bx{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
     width: 100%;
     margin-bottom: 2rem;
+    gap: 2.5rem;
 }
 
 .circle-bx{
@@ -114,27 +114,45 @@ h3{
 }
 
 .signup-form-title{
-    margin-bottom: 1rem;
+    margin-bottom: 2.5rem;
 }
 
 .signup-form-input-bx {
-    margin-bottom: .7rem;
+    margin-bottom: 2rem;
     position: relative;
 }
 
 .signup-form-input-error{
     position: absolute;
-    top: .2rem;
+    top: -1.5rem;
     right: 5rem;
     display: inline-block;
     color: var(--error-color);
     font-size: 0.8rem;
+    z-index: 3;
+}
+
+.signup-form-input-bx label{
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: all .2s ease-in;
+}
+
+.signup-form-input-bx .signup-float-label{
+    transform: translateY(-160%);
+    opacity: 1;
+    background-color: var(--dominant-color);
+    font-size: .8rem;
+    z-index: 2;
 }
 
 .signup-form-input-bx input{
     display: flex;
     margin-top: .3rem;
-    width: 78%;
+    width: 88%;
     background-color:var(--dominant-color);
     box-shadow: -2px -2px 10px rgba(255,255,255,1),
                 -2px -2px 12px rgba(255,255,255,0.5),
@@ -147,9 +165,10 @@ h3{
 .signup-reveal-password-btn,
 .signup-not-reveal-password-btn{
     position: absolute;
-    top: 45%;
-    right: 20%;
+    top: 0;
+    right: 10%;
     background-color: transparent;
+    opacity: 0.7;
 }
 
 .signup-reveal-password-btn i,
@@ -197,12 +216,16 @@ h3{
     .signup-container{
         width: 400px;
     }
+    .signup-timeline-bx{
+        justify-content: space-around;
+        gap: 0;
+    }
     .signup-form-wrapper{
         width: calc(400px * 3);
     }
 
     .signup-form-input-bx input{
-        width: 84%;
+        width: 90%;
     }
 
     .signup-reveal-password-btn,
@@ -215,6 +238,9 @@ h3{
 @media(min-width:500px){
     .signup-container{
         width: 450px;
+        box-shadow: 1px 1px 10px rgba(0,0,0,0.1),
+        -1px -1px 10px rgba(255,255,255,0.0125);
+        padding: 2rem;
     }
     .signup-form-wrapper{
         width: calc(450px * 3);

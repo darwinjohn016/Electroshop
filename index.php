@@ -52,7 +52,7 @@
                                 <p class="user-email">'.$_SESSION['email'].'</p>
                             </div>
                             <div class="user-anchor-bx">
-                                <a href=""><i class="fa-solid fa-user"></i>Profile</a>
+                                <a href="profile.php"><i class="fa-solid fa-user"></i>Profile</a>
                             </div>
                             <div class="user-anchor-bx">
                                 <a href=""><i class="fa-solid fa-cart-shopping"></i>My Cart</a>
