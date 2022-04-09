@@ -43,82 +43,70 @@ class SignUpControl extends SignUpModel{
         // }
 
         if($this->checkUserNameExist() == false){
-            echo '1';
             $result = false;
         }
 
         if($this->checkUserEmailExist() == false){
-            echo '2';
+            $result = false;
+        }
+
+        if($this->checkUserCpNumberExist() == false){
             $result = false;
         }
 
         if($this->emptyFirstName() == false){
-            echo '3';
             $result = false;
         }
 
         if($this->emptyLastName() == false){
-            echo '4';
             $result = false;
         }
 
         if($this->emptyEmail() == false){
-            echo '5';
             $result = false;
         }
 
         if($this->validEmail() == false){
-            echo '6';
             $result = false;
         }
 
         if($this->emptyCpNumber() == false){
-            echo '7';
             $result = false;
         }
 
         if($this->emptyAddress() == false){
-            echo '8';
             $result = false;
         }
 
         if($this->emptyCity() == false){
-            echo '9';
             $result = false;
         }
 
         if($this->emptyCountry() == false){
-            echo '10';
             $result = false;
         }
 
         if($this->emptyCountry() == false){
-            echo '11';
             $result = false;
         }
 
         if($this->emptyRegion() == false){
-            echo '12';
             $result = false;
         }
 
         if($this->emptyUsername() == false){
-            echo '13';
             $result = false;
         }
 
         if($this->validUsername() == false){
-            echo '14';
             $result = false;
         }
 
         if($this->emptyPassword() == false){
-            echo '15';
             $result = false;
         }
 
         if($this->matchPassword() == false){
-            echo '16';
             $result = false;
 
         }
@@ -200,6 +188,28 @@ class SignUpControl extends SignUpModel{
         }
         return $result;
     }
+
+    // Check if Cellphone Number Exists
+
+    public function errorUserCpNumberExist(){
+
+        $result = $this->checkUserCpNumberExist();
+        if($result == false){
+            echo 'Number Already Taken';
+        }
+    }
+
+    private function checkUserCpNumberExist(){
+        $result= "";
+
+        if(!$this->checkUserCpNumber($this->users_cpnumber)){
+            $result = false;
+        }
+        else {
+            $result = true;
+        }
+        return $result;
+    }  
 
     // First Name
 
@@ -453,11 +463,11 @@ class SignUpControl extends SignUpModel{
     private function matchPassword(){
         
         $result = '';
-        if(!$this->users_password == $this->users_cpassword || empty($this->users_cpassword)){
-            $result = false;
+        if($this->users_password === $this->users_cpassword){
+            $result = true;
         }
         else {
-            $result = true;
+            $result = false;
         }
 
         return $result;

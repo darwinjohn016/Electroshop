@@ -58,8 +58,6 @@ class SignUpModel extends Database{
             header("Location:./signup.php?error=stmtfailed");
             exit();
         }
-
-        $stmt->execute(array($users_email));
         
         $result = '';
         
@@ -72,5 +70,28 @@ class SignUpModel extends Database{
 
         return $result;
     }
+
+    protected function checkUserCpNumber($users_cpnumber){
+
+        $stmt = $this->connect()->prepare("SELECT * FROM users WHERE users_cpnumber = ?");
+
+        if(!$stmt->execute([$users_cpnumber])){
+            $stmt = null;
+            header("Location:./signup.php?error=stmtfailed");
+            exit();
+        }
+        
+        $result = '';
+        
+        if(!empty($stmt->fetchAll())){
+            $result = false;
+        }
+        else {
+            $result = true;
+        }
+
+        return $result;
+    }
+
 
 }

@@ -153,6 +153,7 @@
                             ?>
                                 <div class="signup-form-input-error">
                                     <?php echo $signUpControl->errorCpNumber()?>
+                                    <?php echo $signUpControl->errorUserCpNumberExist()?>
                                 </div>
                             <?php
                             }

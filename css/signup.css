@@ -26,9 +26,9 @@ input{
 
 .signup-container{
     width: 300px;
-    margin: auto;
     background-color:var(--dominant-color);
     padding: 2rem 1rem;
+    margin: auto;
 }
 
 .signup-header{
@@ -114,18 +114,18 @@ input{
 }
 
 .signup-form-title{
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
 }
 
 .signup-form-input-bx {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     position: relative;
 }
 
 .signup-form-input-error{
     position: absolute;
-    top: -1.5rem;
-    right: 5rem;
+    top: -2rem;
+    right: 2.5rem;
     display: inline-block;
     color: var(--error-color);
     font-size: 0.8rem;
@@ -228,6 +228,11 @@ input{
         width: 90%;
     }
 
+    .signup-form-input-error{
+        right: 3rem;
+        top: -1.5rem;
+    }
+
     .signup-reveal-password-btn,
     .signup-not-reveal-password-btn{
         right: 15%;
@@ -248,5 +253,10 @@ input{
 
     .signup-form-input-bx input{
         width: 85%;
+    }
+
+    .signup-form-input-error{
+        right: 4.5rem;
+        top: -1.5rem;
     }
 }
