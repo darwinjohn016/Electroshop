@@ -60,7 +60,7 @@ function scrollHeader(){
             span.style.color = `var(--dominant-color)`;
         })
 
-        navBtnBx.forEach((anchor) =>{
+        navBtnBx.forEach(anchor =>{
             anchor.style.color = `var(--dominant-color)`;
         })
 
@@ -134,26 +134,82 @@ function scrollHeader(){
 
 }
 
-window.addEventListener('scroll',scrollHeader);
 window.addEventListener('resize',scrollHeader);
+window.addEventListener('scroll',scrollHeader);
+
 
 // Open or Close User Info bx
 
 const userBtn = document.querySelector('.user-btn');
 const userBtnBx3 = document.querySelector('.user-btn-bx-3');
+const overlay = document.querySelector('.overlay');
+
 
 function toggleInfoBx(){
 
     userBtnBx3.classList.toggle('hide-user-btn-bx-3');
-    if(document.querySelectorAll('.hide-user-btn-bx-3').length === 0){
+    if(document.querySelectorAll('.hide-user-btn-bx-3').length !== 0){
         document.body.style.position = "fixed";
+        overlay.classList.add('overlay-toggle');
     }
     else {
         document.body.style.position = "relative";
-    
+        overlay.classList.remove('overlay-toggle');
     }
 }
 
 if(userBtn != null){
     userBtn.addEventListener('click',toggleInfoBx);
+    overlay.addEventListener('click',toggleInfoBx);
 }
+
+// Floating Labels
+
+const contactFormInputBx = document.querySelectorAll('.contact-form-input-bx');
+
+import {floatLabel,notFloatLabel} from './modules/float-label.js';
+
+
+contactFormInputBx.forEach(bx=>{
+  if(bx.children.length % 2 === 0){
+      bx.firstElementChild.nextElementSibling.addEventListener('focus',floatLabel);
+      bx.firstElementChild.nextElementSibling.addEventListener('blur',notFloatLabel);
+  }
+
+  else {
+      bx.firstElementChild.nextElementSibling.nextElementSibling.addEventListener('focus',floatLabel);
+      bx.firstElementChild.nextElementSibling.nextElementSibling.addEventListener('blur',notFloatLabel);
+  }
+});
+
+contactFormInputBx.forEach(bx=>{
+  if(bx.children.length % 2 === 1){
+      
+      if(bx.firstElementChild.nextElementSibling.nextElementSibling.value !== ""){
+          bx.firstElementChild.classList.add('float-label');
+      }
+  }
+});
+
+// Show and Hide Accordion
+
+const accordionBx = document.querySelectorAll('.contact-accordion-bx');
+
+function toggleAccordion(){
+    this.nextElementSibling.classList.toggle('show-accordion');
+
+    if(document.querySelector('.show-accordion')){
+        this.lastElementChild.classList.remove('fa-plus');
+        this.lastElementChild.classList.add('fa-minus');
+    }
+    else{
+        this.lastElementChild.classList.add('fa-plus');
+        this.lastElementChild.classList.remove('fa-minus');
+    }
+    
+}
+
+
+accordionBx.forEach(bx=>{
+    bx.firstElementChild.addEventListener('click',toggleAccordion);
+})

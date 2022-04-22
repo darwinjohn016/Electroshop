@@ -4,13 +4,12 @@
     --accent-color: #009063;
 
     --error-color: #fa7777;
+    --light-color: #f1f1f1;
 }
 
 body{
     background-color: var(--dominant-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    
 }
 
 p,
@@ -27,8 +26,8 @@ input{
 .signup-container{
     width: 300px;
     background-color:var(--dominant-color);
-    padding: 2rem 1rem;
-    margin: auto;
+    padding: 1rem;
+    margin: 2rem auto;
 }
 
 .signup-header{
@@ -55,11 +54,31 @@ input{
 .signup-timeline-bx{
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;   
+    align-items: center; 
     width: 100%;
     margin-bottom: 2rem;
-    gap: 2.5rem;
 }
+
+.line-bx{
+    width: 100px;
+    height: 3px;
+    background-color: var(--secondary-color);
+    margin-top: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.line-bx-2{
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left:0;
+    background-color: var(--accent-color);
+    transition: all 0.4s ease-in;
+}
+
 
 .circle-bx{
     display: flex;
@@ -69,7 +88,6 @@ input{
 }
 
 .circle-bx p{
-    margin-bottom: .2rem;
     font-weight: bold;
 }
 
@@ -141,7 +159,7 @@ input{
     transition: all .2s ease-in;
 }
 
-.signup-form-input-bx .signup-float-label{
+.signup-form-input-bx .float-label{
     transform: translateY(-160%);
     opacity: 1;
     background-color: var(--dominant-color);
@@ -174,6 +192,7 @@ input{
 .signup-reveal-password-btn i,
 .signup-not-reveal-password-btn i{
     color: var(--secondary-color);
+    pointer-events: none;
 }
 
 .toggle-reveal-password-btn{
@@ -246,6 +265,8 @@ input{
         box-shadow: 1px 1px 10px rgba(0,0,0,0.1),
         -1px -1px 10px rgba(255,255,255,0.0125);
         padding: 2rem;
+        border-radius: 4px;
+        background-color: var(--light-color);
     }
     .signup-form-wrapper{
         width: calc(450px * 3);

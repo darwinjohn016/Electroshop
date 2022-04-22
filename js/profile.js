@@ -6,56 +6,7 @@ if(window.history.replaceState){
 
 const profileFormInputBx = document.querySelectorAll('.profile-form-input-bx');
 
-function floatLabel(){
-    
-
-    if(this.closest('.profile-form-input-bx').children.length % 2 === 0){
-
-        this.previousElementSibling.classList.add('profile-float-label');
-        this.previousElementSibling.style.color = `var(--accent-color)`;
-        this.placeholder = "";
-    }
-
-    else {
-        this.previousElementSibling.previousElementSibling.classList.add('profile-float-label');
-        this.previousElementSibling.previousElementSibling.style.color = `var(--accent-color)`;
-        this.placeholder = "";
-    }
-
-
-}
-
-function notFloatLabel(){
-
-    if(this.closest('.profile-form-input-bx').children.length % 2 === 0){
-        
-        if(this.value !== ""){
-            this.previousElementSibling.style.color = `var(--secondary-color)`;
-        }
-        else{
-            this.previousElementSibling.classList.remove('profile-float-label');
-            this.previousElementSibling.style.color = `var(--secondary-color)`;
-            this.placeholder = this.previousElementSibling.textContent;
-        }
-
-    }
-
-    else {
-
-        if(this.value !== ""){
-            this.previousElementSibling.previousElementSibling.style.color = `var(--secondary-color)`;
-        }
-        else{
-            this.previousElementSibling.previousElementSibling.classList.remove('profile-float-label');
-            this.previousElementSibling.previousElementSibling.style.color = `var(--secondary-color)`;
-            this.placeholder = this.previousElementSibling.previousElementSibling.textContent;
-        }
-    }
-
-
-}
-
-
+import {floatLabel,notFloatLabel} from './modules/float-label.js';
 
 profileFormInputBx.forEach(bx=>{
     if(bx.children.length % 2 === 0){
@@ -73,10 +24,10 @@ profileFormInputBx.forEach(bx=>{
 profileFormInputBx.forEach(bx=>{
         
     if(bx.firstElementChild.nextElementSibling.value !== ""){
-        bx.firstElementChild.classList.add('profile-float-label');
+        bx.firstElementChild.classList.add('float-label');
     }
     if(bx.children.length % 2 === 1 && bx.firstElementChild.nextElementSibling.nextElementSibling.value === ""){
-        bx.firstElementChild.classList.remove('profile-float-label');
+        bx.firstElementChild.classList.remove('float-label');
     }
 
     
@@ -108,7 +59,6 @@ submitImgBtn.addEventListener("change",previewImage);
     
 // Open Password Modal
 
-
 const profilePasswordContainer = document.querySelector('.profile-password-container');
 const profilePassBtn = document.querySelector('.profile-pass-btn');
 
@@ -122,8 +72,9 @@ function showModal(){
     overlay.classList.add('overlay-toggle');
     profileFormInputBx2.forEach(bx=>{
 
-        bx.lastElementChild.setAttribute('readonly','true');
+        bx.lastElementChild.setAttribute('readonly','readonly');
     });
+
 }
 
 function hideModal(){
@@ -131,10 +82,35 @@ function hideModal(){
     overlay.classList.remove('overlay-toggle');
     profileFormInputBx2.forEach(bx=>{
 
-        bx.lastElementChild.setAttribute('readonly','false');
+        bx.lastElementChild.removeAttribute('readonly');
     });
+
 }
 
 
-profilePassBtn.addEventListener('click',showModal);profileCloseBtn.addEventListener('click',hideModal);
+profilePassBtn.addEventListener('click',showModal);
+profileCloseBtn.addEventListener('click',hideModal);
+overlay.addEventListener('click',hideModal);
+
+// Show or Reveal Password
+
+const revealBtn = document.querySelectorAll('.profile-form-input-bx .profile-reveal-password-btn');
+
+const notRevealBtn = document.querySelectorAll('.profile-form-input-bx .profile-not-reveal-password-btn');  
+
+import {showPassword,hidePassword} from './modules/show-password.js';
+
+
+revealBtn.forEach(btn =>{
+    btn.addEventListener('click',e=>{
+        showPassword(e);
+    })
+})
+
+notRevealBtn.forEach(btn =>{
+    btn.addEventListener('click',e=>{
+        hidePassword(e);
+    })
+})
+
 

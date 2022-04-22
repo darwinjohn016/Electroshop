@@ -37,9 +37,7 @@
 
         $users_region = filter_input(INPUT_POST,'users_region',FILTER_SANITIZE_SPECIAL_CHARS);
 
-        
         if(!empty($_FILES['submit_img']['name'])){
-            print_r($_FILES);
             $img_dir =  'user-images/';
             $img_path = $img_dir.$_FILES['submit_img']['name'];
             $img_name = $_FILES['submit_img']['name'];
@@ -54,9 +52,9 @@
             if(in_array($img_ext, $extensions)){
                 if($img_size <= 100000000){
                     move_uploaded_file($img_tmp,$img_path);
-                    rename($img_path,$img_dir.$users_username.'.'.$img_ext);
+                    rename($img_path,$img_dir.$users_id.'.'.$img_ext);
 
-                    $_SESSION['img'] = $img_dir.$users_username.'.'.$img_ext;
+                    $_SESSION['img'] = $img_dir.$users_id.'.'.$img_ext;
                 }
                 else{
                     $img_upload_error = 'Too Big';
@@ -71,7 +69,13 @@
 
         $profileControl = new ProfileControl($users_fname,$users_lname,$users_username,$users_email,$users_cpnumber,$users_address,$users_city,$users_country,$users_region,$_SESSION['img']); 
 
-        $profileControl->updateUserInfo();
+
+        if($img_upload_error !== ""){
+
+        }
+        else{
+            $profileControl->updateUserInfo();
+        }
     }
 
     if(isset($_POST['update_pass'])){
@@ -108,9 +112,7 @@
 </head> 
 <body>
     
-    <div class="overlay">
-        
-    </div>
+    <div class="overlay"></div>
 
     <form class="profile-container" enctype="multipart/form-data" method="post" action="<?php filter_input(INPUT_SERVER,'PHP_SELF',FILTER_SANITIZE_SPECIAL_CHARS)?> ">
 
@@ -124,7 +126,12 @@
                 <p class="profile-username"><?php echo $userData[0]['users_fname'].' '.$userData[0]['users_lname'];?></p>
                 <p class="profile-email"><?php echo $userData[0]['users_email']?></p>
 
-                <p class="profile-img-error"><?php echo $img_upload_error ?></p>
+                <?php
+                if(isset($_POST['update'])){
+                    echo '<p class="profile-img-error">'.$img_upload_error.'</p>';
+                }
+                ?>
+
                 <label class="submit-img-bx">Change Picture 
                     <input type="file" accept="image/*" name="submit_img" id="submit_img" class="submit-img-btn">
                 </label>
@@ -269,13 +276,16 @@
                     ?> 
                 <input type="text" value="<?php echo $userData[0]['users_region']?>" name="users_region">
             </div>
+        
+            <div class="profile-btn-bx">
+                <button class="profile-btn" name="update">Update Profile</button>
+                <button class="profile-pass-btn" type="button">Update Password</button>
+            </div>
+
 
         </div>
 
-        <div class="profile-btn-bx">
-            <button class="profile-btn" name="update">Update Profile</button>
-            <button class="profile-pass-btn" type="button">Update Password</button>
-        </div>
+
 
         <div class="profile-password-container">
 
@@ -293,11 +303,15 @@
                     }
                     ?> 
                 <input type="password" name="users_password" placeholder="Old Password">
+                <button type="button" class="profile-reveal-password-btn"><i class="fa fa-eye-slash"></i></button>
+                <button type="button" class="profile-not-reveal-password-btn toggle-reveal-password-btn"><i class="fa fa-eye"></i></button>
             </div>  
 
             <div class="profile-form-input-bx">
                 <label for="">Confirm Password</label>
                 <input type="password" name="users_cpassword" placeholder="Confirm Password">
+                <button type="button" class="profile-reveal-password-btn"><i class="fa fa-eye-slash"></i></button>
+                <button type="button" class="profile-not-reveal-password-btn toggle-reveal-password-btn"><i class="fa fa-eye"></i></button>
             </div>    
 
             <div class="profile-form-input-bx">
@@ -312,11 +326,15 @@
                     }
                     ?> 
                 <input type="password" name="users_npassword" placeholder="New Password">
+                <button type="button" class="profile-reveal-password-btn"><i class="fa fa-eye-slash"></i></button>
+                <button type="button" class="profile-not-reveal-password-btn toggle-reveal-password-btn"><i class="fa fa-eye"></i></button>
             </div>  
             
             <div class="profile-form-input-bx">
                 <label for="">Confirm New Password</label>
                 <input type="password" name="users_cnpassword" placeholder="Confirm New Password">
+                <button type="button" class="profile-reveal-password-btn"><i class="fa fa-eye-slash"></i></button>
+                <button type="button" class="profile-not-reveal-password-btn toggle-reveal-password-btn"><i class="fa fa-eye"></i></button>
             </div>   
 
             <div class="profile-pass-btn-bx">
@@ -331,7 +349,7 @@
  
     
 
-    <script src="js/profile.js"></script>
+    <script type="module" src="js/profile.js"></script>
 
 
 </body>

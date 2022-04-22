@@ -11,15 +11,16 @@ const submitBtn = document.querySelector('.submit-btn');
 const formWrapper = document.querySelector('.signup-form-wrapper');
 
 
-const timelineBx = document.querySelector('.signup-timeline-bx');
-
+const circleBx = document.querySelectorAll('.signup-timeline-bx .circle-bx');
+const lineBx = document.querySelectorAll('.signup-timeline-bx .line-bx');
 
 class NavigateInput{
-    constructor(formWrapper,timelineBx){
+    constructor(formWrapper,circleBx,lineBx){
         this.formWrapper = formWrapper;
         this.count = 0;
         this.distance = formWrapper.clientWidth / formWrapper.children.length;
-        this.timelineBx = timelineBx;
+        this.circleBx = circleBx;
+        this.lineBx = lineBx;
     }
 
     prev(){
@@ -29,18 +30,36 @@ class NavigateInput{
             this.formWrapper.style.transform = `translateX(${-(this.distance * this.count)}px)`;
             nextBtn.classList.add('active-btn');
 
-            
-            // .circle-bx p
-            this.timelineBx.children[this.count].children[0].style.color = `var(--secondary-color)`;
+            this.circleBx.forEach((bx,index)=>{
+                
+                if(index === this.count){
+                    bx.firstElementChild.style.color = `var(--secondary-color)`;
+                    bx.lastElementChild.style.backgroundColor = `transparent`;
+                    
+                    bx.lastElementChild.firstElementChild.style.color = `var(--secondary-color)`;       
+                    
+                    bx.lastElementChild.firstElementChild.textContent = `${parseInt(this.count+1).toString()}`;
+                }
+            })
 
-            // .circle-bx div
-            this.timelineBx.children[this.count].children[1].style.backgroundColor = `transparent`;            
+            this.lineBx.forEach((bx,index)=>{
+                
+                if(index === this.count){
+                    bx.firstElementChild.style.width= 0;
+                }
+            })
 
-            // .circle-bx div p
-            this.timelineBx.children[this.count].children[1].children[0].style.color = `var(--secondary-color)`;            
+            // // .circle-bx p
+            // this.circleBx.children[this.count].children[0].style.color = `var(--secondary-color)`;
 
-            // .circle-bx div p
-            this.timelineBx.children[this.count].children[1].children[0].textContent = `${parseInt(this.count+1).toString()}`;
+            // // .circle-bx div
+            // this.circleBx.children[this.count].children[1].style.backgroundColor = `transparent`;            
+
+            // // .circle-bx div p
+            // this.circleBx.children[this.count].children[1].children[0].style.color = `var(--secondary-color)`;            
+
+            // // .circle-bx div p
+            // this.circleBx.children[this.count].children[1].children[0].textContent = `${parseInt(this.count+1).toString()}`;
 
         }
 
@@ -66,17 +85,37 @@ class NavigateInput{
             this.formWrapper.style.transform = `translateX(${-(this.distance * this.count)}px)`;
             prevBtn.classList.add('active-btn');
 
-            // .circle-bx p
-            this.timelineBx.children[this.count-1].children[0].style.color = `var(--accent-color)`;
 
-            // .circle-bx div
-            this.timelineBx.children[this.count-1].children[1].style.backgroundColor = `var(--accent-color)`;
+            this.circleBx.forEach((bx,index)=>{
+                
+                if(index === this.count-1){
+                    bx.firstElementChild.style.color = `var(--accent-color)`;
+                    bx.lastElementChild.style.backgroundColor = `var(--accent-color)`;
+                    
+                    bx.lastElementChild.firstElementChild.style.color = `var(--dominant-color)`;        
+                    
+                    bx.lastElementChild.firstElementChild.textContent = "✓";
+                }
+            })
 
-            // .circle-bx div p
-            this.timelineBx.children[this.count-1].children[1].children[0].style.color = `var(--dominant-color)`;
+            this.lineBx.forEach((bx,index)=>{
+                
+                if(index === this.count-1){
+                    bx.firstElementChild.style.width= `100px`;
+                }
+            })
 
-            // .circle-bx div p
-            this.timelineBx.children[this.count-1].children[1].children[0].textContent = "✓";
+            // // .circle-bx p
+            // this.circleBx.children[this.count-1].children[0].style.color = `var(--accent-color)`;
+
+            // // .circle-bx div
+            // this.circleBx.children[this.count-1].children[1].style.backgroundColor = `var(--accent-color)`;
+
+            // // .circle-bx div p
+            // this.circleBx.children[this.count-1].children[1].children[0].style.color = `var(--dominant-color)`;
+
+            // // .circle-bx div p
+            // this.circleBx.children[this.count-1].children[1].children[0].textContent = "✓";
 
         }
 
@@ -100,7 +139,7 @@ class NavigateInput{
 }
 
 
-const navigateInput = new NavigateInput(formWrapper,timelineBx);
+const navigateInput = new NavigateInput(formWrapper,circleBx,lineBx);
 
 prevBtn.addEventListener('click',navigateInput.prev.bind(navigateInput));
 
@@ -110,89 +149,30 @@ window.addEventListener('resize',navigateInput.update.bind(navigateInput))
 
 // Show or Reveal Password
 
-const inputPassword = document.querySelector('input[type="password"]');
+const revealBtn = document.querySelectorAll('.signup-form-input-bx .signup-reveal-password-btn');
 
-const revealBtn = document.querySelector('.signup-reveal-password-btn');
+const notRevealBtn = document.querySelectorAll('.signup-form-input-bx .signup-not-reveal-password-btn');  
 
-const notRevealBtn = document.querySelector('.signup-not-reveal-password-btn');  
+import {showPassword,hidePassword} from './modules/show-password.js';
 
-class PasswordDisplay{
-  constructor(inputPassword){
-    this.inputPassword = inputPassword;
-  }
+revealBtn.forEach(btn =>{
+    btn.addEventListener('click',e=>{
+        showPassword(e);
+    })
+})
 
-
-  show(){
-    revealBtn.classList.toggle('toggle-reveal-password-btn');
-    notRevealBtn.classList.toggle('toggle-reveal-password-btn');
-    this.inputPassword.type = 'text';
-  }
-
-  hide(){
-    revealBtn.classList.toggle('toggle-reveal-password-btn');
-    notRevealBtn.classList.toggle('toggle-reveal-password-btn');
-    this.inputPassword.type = 'password';
-  }
-
-}
-
-const passwordDisplay = new PasswordDisplay(inputPassword);
-
-revealBtn.addEventListener('click',passwordDisplay.show.bind(passwordDisplay));
-
-notRevealBtn.addEventListener('click',passwordDisplay.hide.bind(passwordDisplay));
+notRevealBtn.forEach(btn =>{
+    btn.addEventListener('click',e=>{
+        hidePassword(e);
+    })
+})
 
 
 // Floating Labels
 
 const signupFormInputBx = document.querySelectorAll('.signup-form-input-bx');
 
-function floatLabel(){
-    
-    if(this.closest('.signup-form-input-bx').children.length % 2 === 0){
-
-        this.previousElementSibling.classList.add('signup-float-label');
-        this.previousElementSibling.style.color = `var(--accent-color)`;
-        this.placeholder = "";
-    }
-
-    else {
-        this.previousElementSibling.previousElementSibling.classList.add('signup-float-label');
-        this.previousElementSibling.previousElementSibling.style.color = `var(--accent-color)`;
-        this.placeholder = "";
-    }
-
-
-}
-
-function notFloatLabel(){
-
-    if(this.closest('.signup-form-input-bx').children.length % 2 === 0){
-        
-        if(this.value !== ""){
-            this.previousElementSibling.style.color = `var(--secondary-color)`;
-        }
-        else{
-            this.previousElementSibling.classList.remove('signup-float-label');
-            this.previousElementSibling.style.color = `var(--secondary-color)`;
-            this.placeholder = this.previousElementSibling.textContent;
-        }
-
-    }
-
-    else {
-
-        if(this.value !== ""){
-            this.previousElementSibling.previousElementSibling.style.color = `var(--secondary-color)`;
-        }
-        else{
-            this.previousElementSibling.previousElementSibling.classList.remove('signup-float-label');
-            this.previousElementSibling.previousElementSibling.style.color = `var(--secondary-color)`;
-            this.placeholder = this.previousElementSibling.previousElementSibling.textContent;
-        }
-    }
-
-}
+import {floatLabel,notFloatLabel} from './modules/float-label.js';
 
 signupFormInputBx.forEach(bx=>{
     if(bx.children.length % 2 === 0){

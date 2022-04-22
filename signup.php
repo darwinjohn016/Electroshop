@@ -84,9 +84,15 @@
                     <p>Details</p>
                     <div><p>1</p></div>
                 </div>
+                <div class="line-bx">
+                    <div class="line-bx-2"></div>
+                </div>
                 <div class="circle-bx">
                     <p>Address</p>
                     <div><p>2</p></div>
+                </div>
+                <div class="line-bx">
+                    <div class="line-bx-2"></div>
                 </div>
                 <div class="circle-bx">
                     <p>Submit</p>
@@ -295,6 +301,6 @@
 
 
                             
-    <script src="js/signup.js"></script>
+    <script type="module" src="js/signup.js"></script>
 </body>
 </html>
